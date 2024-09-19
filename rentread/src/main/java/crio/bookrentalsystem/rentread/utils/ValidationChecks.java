@@ -1,4 +1,4 @@
-package crio.bookrentalsystem.rentread.config;
+package crio.bookrentalsystem.rentread.utils;
 
 public class ValidationChecks {
 

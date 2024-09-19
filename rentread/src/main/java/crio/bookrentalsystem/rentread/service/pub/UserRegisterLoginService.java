@@ -1,22 +1,18 @@
 package crio.bookrentalsystem.rentread.service.pub;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
-
-import javax.security.auth.login.LoginException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import crio.bookrentalsystem.rentread.config.ValidationChecks;
 import crio.bookrentalsystem.rentread.dto.Roles;
 import crio.bookrentalsystem.rentread.dto.StatusMessage;
 import crio.bookrentalsystem.rentread.exception.LoginsException;
 import crio.bookrentalsystem.rentread.exception.RegistrationException;
 import crio.bookrentalsystem.rentread.model.User;
 import crio.bookrentalsystem.rentread.repository.IUserRepository;
+import crio.bookrentalsystem.rentread.utils.ValidationChecks;
 
 @Service
 public class UserRegisterLoginService {

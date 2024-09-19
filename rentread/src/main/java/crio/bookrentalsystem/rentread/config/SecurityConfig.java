@@ -20,14 +20,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()  // Disable CSRF for testing purposes
+            .csrf().disable()
             .authorizeHttpRequests()
-                .requestMatchers("/user/register","/user/login").permitAll()  // Allow unauthenticated access to /user/register
-                .anyRequest().authenticated()  // Require authentication for all other endpoints
+            .requestMatchers("/user/register", "user/login").permitAll() // Allow anyone to register
+            .requestMatchers("/book/register").hasRole("ADMIN") // Only admins can register books
+            .anyRequest().authenticated() // All other endpoints require authentication
             .and()
-            .httpBasic();  // Use basic authentication or form login as needed
+            .httpBasic(); // Enable Basic Authentication
 
         return http.build();
     }
+
+    
+
 
 }
