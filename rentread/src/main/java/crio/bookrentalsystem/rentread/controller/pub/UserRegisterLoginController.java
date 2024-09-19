@@ -3,15 +3,22 @@ package crio.bookrentalsystem.rentread.controller.pub;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import crio.bookrentalsystem.rentread.dto.StatusMessage;
 import crio.bookrentalsystem.rentread.dto.UserRegisterRequest;
 import crio.bookrentalsystem.rentread.model.User;
 import crio.bookrentalsystem.rentread.service.pub.UserRegisterLoginService;
+
+import java.security.Principal;
+import java.util.Map;
+
+import javax.security.auth.login.LoginException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 
 @RestController
@@ -32,6 +39,13 @@ public class UserRegisterLoginController {
 
         User resp = userRegisterLoginService.userRegistrationS(username, password, firstname, lastname, role);
         return new ResponseEntity<>(resp, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<StatusMessage> userLogin(@RequestHeader(value = "username", defaultValue = "") String username, @RequestHeader(value = "password", defaultValue = "") String password) {
+        //TODO: process POST request
+        StatusMessage resp = userRegisterLoginService.userLoginS(username, password);
+        return new ResponseEntity<>(resp , HttpStatus.OK);
     }
     
     

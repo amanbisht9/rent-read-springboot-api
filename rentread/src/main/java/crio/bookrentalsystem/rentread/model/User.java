@@ -9,7 +9,7 @@ public class User {
     
     
     @Id
-    private String email;
+    private String username;
 
     private String password;
     private String firstname;
@@ -20,19 +20,23 @@ public class User {
     public User() {
     }
     
-    public User(String email, String password, String firstname, String lastname, String role) {
-        this.email = email;
+    public User(String username, String password, String firstname, String lastname, String role) {
+        this.username = username;
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
         this.role = role;
     }
-    public String getEmail() {
-        return email;
+    
+    public String getUsername() {
+        return username;
     }
-    public void setEmail(String email) {
-        this.email = email;
+
+    public void setUsername(String username) {
+        this.username = username;
     }
+
+    
     public String getPassword() {
         return password;
     }
