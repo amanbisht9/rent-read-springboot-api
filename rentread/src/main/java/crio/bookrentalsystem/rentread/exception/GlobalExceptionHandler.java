@@ -21,5 +21,11 @@ public class GlobalExceptionHandler {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(FieldException.class)
+    public ResponseEntity<?> handleFieldException(FieldException ex){
+        ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage());
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+    }
     
 }

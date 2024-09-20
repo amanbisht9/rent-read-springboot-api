@@ -8,11 +8,6 @@ import crio.bookrentalsystem.rentread.dto.UserRegisterRequest;
 import crio.bookrentalsystem.rentread.model.User;
 import crio.bookrentalsystem.rentread.service.pub.UserRegisterLoginService;
 
-import java.security.Principal;
-import java.util.Map;
-
-import javax.security.auth.login.LoginException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
