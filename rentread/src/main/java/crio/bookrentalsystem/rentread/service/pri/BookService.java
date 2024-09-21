@@ -1,18 +1,16 @@
 package crio.bookrentalsystem.rentread.service.pri;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import crio.bookrentalsystem.rentread.dto.BookStatus;
 import crio.bookrentalsystem.rentread.exception.FieldException;
+import crio.bookrentalsystem.rentread.exception.NotFoundException;
 import crio.bookrentalsystem.rentread.exception.RegistrationException;
 import crio.bookrentalsystem.rentread.model.Book;
-import crio.bookrentalsystem.rentread.model.User;
 import crio.bookrentalsystem.rentread.repository.IBookRepositary;
 import crio.bookrentalsystem.rentread.repository.IUserRepository;
 import crio.bookrentalsystem.rentread.utils.ValidationChecks;
@@ -103,6 +101,42 @@ public class BookService {
 
         } catch (Exception e) {
             throw new FieldException(e.getMessage());
+        }
+    }
+
+
+    public boolean deleteBookS(int id) {
+        Optional<Book> fBook = bookRepositary.findById(id);
+        try {
+
+            if(!fBook.isPresent()){
+                throw new FieldException("Book id does not exist");
+            }
+    
+            bookRepositary.deleteById(id);
+            return true;
+            
+            
+        } catch (Exception e) {
+            throw new FieldException(e.getMessage());
+        }
+
+    }
+
+
+    public List<Book> getAvailableBookS() {
+        List<Book> fBook = bookRepositary.findByBookStatus("AVAILABLE");
+        
+        try {
+            if(fBook.isEmpty()){
+                throw new NotFoundException("No book is available");
+            }
+
+            return fBook;
+            
+            
+        } catch (Exception e) {
+            throw new NotFoundException(e.getMessage());
         }
     }
     
