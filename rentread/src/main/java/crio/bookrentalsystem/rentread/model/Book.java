@@ -1,9 +1,15 @@
 package crio.bookrentalsystem.rentread.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Book {
@@ -17,7 +23,18 @@ public class Book {
     private String bookGenre;
     private String bookStatus;
 
+    @ManyToMany(mappedBy = "userBooks", fetch = FetchType.LAZY)
+    @JsonBackReference
+    private List<User> users;
 
+
+    public List<User> getUsers() {
+        return users;
+    }
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+    
     public int getBookId() {
         return bookId;
     }

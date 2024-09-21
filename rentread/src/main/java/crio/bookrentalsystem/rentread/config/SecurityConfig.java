@@ -33,8 +33,8 @@ public class SecurityConfig {
         http    
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/user/register", "user/login").permitAll() // Allow anyone to register
-                        .requestMatchers("/book/register","/book/update/{id}","/book/delete/{id}").hasAuthority("ADMIN") // Only admins can register books
-                        .requestMatchers("/book/available").hasAnyAuthority("ADMIN","USER")
+                        .requestMatchers("/book/register","/book/update/{id}","/book/delete/{id}","/book/rent","/book/unrent").hasAuthority("ADMIN") // Only admins can register books
+                        .requestMatchers("/book/available","/book/all").hasAnyAuthority("ADMIN","USER")
                         .anyRequest().authenticated())
                         .httpBasic(Customizer.withDefaults())
                         .csrf(AbstractHttpConfigurer::disable);
